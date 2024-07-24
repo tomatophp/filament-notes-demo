@@ -9,6 +9,9 @@ use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -23,6 +26,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAccounts\Filament\Pages\Auth\LoginAccount;
 use TomatoPHP\FilamentAccounts\FilamentAccountsSaaSPlugin;
+use TomatoPHP\FilamentNotes\Filament\Resources\NoteResource;
 use TomatoPHP\FilamentNotes\Filament\Widgets\NotesWidget;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
@@ -54,6 +58,36 @@ class AppPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->items([
+                    NavigationItem::make(Pages\Dashboard::getNavigationLabel())
+                        ->icon('heroicon-o-home')
+                        ->isActiveWhen(fn (): bool => url()->current() === Pages\Dashboard::getUrl())
+                        ->url(fn (): string => Pages\Dashboard::getUrl()),
+                    ...NoteResource::getNavigationItems(),
+                ])->groups([
+                    NavigationGroup::make()
+                        ->label('Links')
+                        ->items([
+                            NavigationItem::make('Documentation')
+                                ->icon('bxs-file-doc')
+                                ->openUrlInNewTab()
+                                ->url("https://filamentphp.com/plugins/3x1io-tomato-notes"),
+                            NavigationItem::make('Github')
+                                ->icon('bxl-github')
+                                ->openUrlInNewTab()
+                                ->url("https://www.github.com/tomatophp/filament-notes"),
+                            NavigationItem::make('Discord')
+                                ->icon('bxl-discord')
+                                ->openUrlInNewTab()
+                                ->url("https://discord.gg/vKV9U7gD3c"),
+                            NavigationItem::make('Buy Me a Coffee')
+                                ->icon('bxs-coffee')
+                                ->openUrlInNewTab()
+                                ->url("https://github.com/sponsors/3x1io")
+                        ]),
+                ]);
+            })
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,

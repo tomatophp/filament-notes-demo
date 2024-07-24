@@ -22,7 +22,7 @@ Live Demo for Filament Sticky Note Package.
 
 ## Support
 
-you can join our discord server to get support [TomatoPHP](https://discord.gg/Xqmt35Uh)
+you can join our discord server to get support [TomatoPHP](https://discord.gg/vKV9U7gD3c)
 
 ## Docs
 
