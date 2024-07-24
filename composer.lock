@@ -7861,16 +7861,16 @@
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "6.7.1",
+            "version": "6.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "d55384cbcf867b3cf21ff4d062403596d94acf81"
+                "reference": "0ef7e8e9d65bb834b7c68f22ec362a6179f50381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/d55384cbcf867b3cf21ff4d062403596d94acf81",
-                "reference": "d55384cbcf867b3cf21ff4d062403596d94acf81",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/0ef7e8e9d65bb834b7c68f22ec362a6179f50381",
+                "reference": "0ef7e8e9d65bb834b7c68f22ec362a6179f50381",
                 "shasum": ""
             },
             "require": {
@@ -7931,7 +7931,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-translatable/issues",
-                "source": "https://github.com/spatie/laravel-translatable/tree/6.7.1"
+                "source": "https://github.com/spatie/laravel-translatable/tree/6.8.0"
             },
             "funding": [
                 {
@@ -7939,7 +7939,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-14T11:35:51+00:00"
+            "time": "2024-07-24T14:26:27+00:00"
         },
         {
             "name": "spatie/laravel-translation-loader",
@@ -11388,16 +11388,16 @@
         },
         {
             "name": "tomatophp/filament-notes",
-            "version": "v1.0.9",
+            "version": "v1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-notes.git",
-                "reference": "b663ccfb73a4b0a044c63902f84df0728079818f"
+                "reference": "5d3570a2fcb928e8411cc22e97f837dbb12ad4c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-notes/zipball/b663ccfb73a4b0a044c63902f84df0728079818f",
-                "reference": "b663ccfb73a4b0a044c63902f84df0728079818f",
+                "url": "https://api.github.com/repos/tomatophp/filament-notes/zipball/5d3570a2fcb928e8411cc22e97f837dbb12ad4c6",
+                "reference": "5d3570a2fcb928e8411cc22e97f837dbb12ad4c6",
                 "shasum": ""
             },
             "require": {
@@ -11441,7 +11441,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-notes/issues",
-                "source": "https://github.com/tomatophp/filament-notes/tree/v1.0.9"
+                "source": "https://github.com/tomatophp/filament-notes/tree/v1.0.10"
             },
             "funding": [
                 {
@@ -11449,7 +11449,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-24T13:00:42+00:00"
+            "time": "2024-07-24T15:29:07+00:00"
         },
         {
             "name": "tomatophp/filament-settings-hub",
