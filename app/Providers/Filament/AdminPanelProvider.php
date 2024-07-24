@@ -9,6 +9,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -19,7 +20,10 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
+use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
+use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
+use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -65,6 +69,12 @@ class AdminPanelProvider extends PanelProvider
                     ->useTeams()
             )
             ->plugin(FilamentNotesPlugin::make())
+            ->plugin(
+                FilamentAlertsPlugin::make()
+                    ->useSettingsHub()
+            )
+            ->plugin(SpatieLaravelTranslatablePlugin::make())
+            ->plugin(FilamentSettingsHubPlugin::make())
             ->plugin(FilamentTranslationsSwitcherPlugin::make())
             ->middleware([
                 EncryptCookies::class,
