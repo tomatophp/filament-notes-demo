@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use TomatoPHP\FilamentAccounts\Models\AccountsMeta;
@@ -131,6 +132,17 @@ class AuthController extends Controller
                             $account->password = bcrypt($password);
                             $account->is_active = true;
                             $account->save();
+
+                            Notification::make()
+                                ->title('New Notes Demo User')
+                                ->body(collect([
+                                    'NAME: '.$account->name,
+                                    'EMAIL: '.$account->email,
+                                    'USERNAME: '.$account->username,
+                                    'DATE: '.Carbon::now()->diffForHumans(),
+                                    'URL: '.url('/'),
+                                ])->implode("\n"))
+                                ->sendToDiscord();
 
                             SendNotification::make(['email'])
                                 ->title('Password')

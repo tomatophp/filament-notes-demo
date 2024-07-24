@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62ae83922a70636e56d27e47f0067626",
+    "content-hash": "4feda5fd35bd88dbe13b60f16a1b3e7c",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -11113,6 +11113,72 @@
                 }
             ],
             "time": "2024-07-08T10:18:17+00:00"
+        },
+        {
+            "name": "tomatophp/filament-discord",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-discord.git",
+                "reference": "274c6654b6d491a80985001458a7b001ad342b84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-discord/zipball/274c6654b6d491a80985001458a7b001ad342b84",
+                "reference": "274c6654b6d491a80985001458a7b001ad342b84",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0.0",
+                "filament/notifications": "^3.0.0",
+                "php": "^8.1|^8.2",
+                "tomatophp/console-helpers": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentDiscord\\FilamentDiscordServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentDiscord\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Send Notification to discord channel Webhook using native FilamentPHP Notification Facade class",
+            "keywords": [
+                "discord",
+                "filament-plugin",
+                "filamentphp",
+                "laravel",
+                "notificaiton",
+                "notification-driver",
+                "php",
+                "tomatophp"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-discord/issues",
+                "source": "https://github.com/tomatophp/filament-discord/tree/v1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-07-09T14:30:28+00:00"
         },
         {
             "name": "tomatophp/filament-helpers",

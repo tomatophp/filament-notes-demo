@@ -19,6 +19,7 @@
         "stechstudio/filament-impersonate": "^3.13",
         "tomatophp/filament-accounts": "^2.0",
         "tomatophp/filament-alerts": "^2.0",
+        "tomatophp/filament-discord": "^1.0",
         "tomatophp/filament-notes": "^1.0",
         "tomatophp/filament-settings-hub": "^1.0",
         "tomatophp/filament-translations": "^1.0"

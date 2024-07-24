@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\LoginPage;
+use App\Filament\Pages\Auth\RegisterPage;
 use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
@@ -99,6 +100,7 @@ class AppPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->login(LoginPage::class);
+            ->login(LoginPage::class)
+            ->registration(RegisterPage::class);
     }
 }
