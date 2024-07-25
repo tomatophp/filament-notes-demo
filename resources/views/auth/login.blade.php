@@ -9,6 +9,11 @@
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}
 
+        @error('data.email')
+            @if($message === trans('filament-accounts::messages.login.active'))
+                <div class="text-center text-red-500 font-bold">Your account is not active. <x-filament::link href="{{ url('otp') }}">Active it now</x-filament::link>.</div>
+            @endif
+        @enderror
     <x-filament-panels::form id="form" wire:submit="authenticate">
         {{ $this->form }}
 
@@ -18,6 +23,10 @@
         />
 
     </x-filament-panels::form>
+    <div class="text-center">
+        <span class="text-gray-400">Do you forget your password?</span> <x-filament::link href="{{ url('reset') }}">Reset It</x-filament::link>
+    </div>
+
 
     <div class="font-bold text-center capitalize">OR</div>
 

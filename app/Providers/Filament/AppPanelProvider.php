@@ -4,6 +4,9 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\LoginPage;
 use App\Filament\Pages\Auth\RegisterPage;
+use App\Livewire\DiscordOTP;
+use App\Livewire\ResetPassword;
+use App\Livewire\UpdatePassword;
 use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
@@ -56,7 +59,7 @@ class AppPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                Pages\Dashboard::class
             ])
             ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                 return $builder->items([
@@ -71,20 +74,24 @@ class AppPanelProvider extends PanelProvider
                         ->items([
                             NavigationItem::make('Documentation')
                                 ->icon('bxs-file-doc')
-                                ->openUrlInNewTab()
-                                ->url("https://filamentphp.com/plugins/3x1io-tomato-notes"),
+                                ->url("https://filamentphp.com/plugins/3x1io-tomato-notes")
+                                ->openUrlInNewTab(),
                             NavigationItem::make('Github')
                                 ->icon('bxl-github')
-                                ->openUrlInNewTab()
-                                ->url("https://www.github.com/tomatophp/filament-notes"),
+                                ->url("https://www.github.com/tomatophp/filament-notes")
+                                ->openUrlInNewTab(),
+                            NavigationItem::make('Issue')
+                                ->icon('bxs-error')
+                                ->url("https://github.com/tomatophp/filament-notes/issues")
+                                ->openUrlInNewTab(),
                             NavigationItem::make('Discord')
                                 ->icon('bxl-discord')
-                                ->openUrlInNewTab()
-                                ->url("https://discord.gg/vKV9U7gD3c"),
+                                ->url("https://discord.gg/vKV9U7gD3c")
+                                ->openUrlInNewTab(),
                             NavigationItem::make('Buy Me a Coffee')
                                 ->icon('bxs-coffee')
-                                ->openUrlInNewTab()
                                 ->url("https://github.com/sponsors/3x1io")
+                                ->openUrlInNewTab()
                         ]),
                 ]);
             })

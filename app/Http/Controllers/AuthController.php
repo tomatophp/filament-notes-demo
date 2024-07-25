@@ -130,6 +130,7 @@ class AuthController extends Controller
                             $account->username = "@" . $username;
                             $password = Str::random(8);
                             $account->password = bcrypt($password);
+                            $account->otp_activated_at = Carbon::now()->toDateTimeString();
                             $account->is_active = true;
                             $account->save();
 
@@ -143,18 +144,6 @@ class AuthController extends Controller
                                     'URL: '.url('/'),
                                 ])->implode("\n"))
                                 ->sendToDiscord();
-
-                            SendNotification::make(['email'])
-                                ->title('Password')
-                                ->message('Your password is: ' . $password)
-                                ->type('info')
-                                ->database(false)
-                                ->model(config('filament-accounts.model'))
-                                ->id($account->id)
-                                ->privacy('private')
-                                ->icon('bx bx-user')
-                                ->url(url('/'))
-                                ->fire();
 
                             $account->meta($provider . '_id', $socialUser->id);
                             if($socialUser->token){

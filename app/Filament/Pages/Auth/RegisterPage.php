@@ -5,16 +5,45 @@ namespace App\Filament\Pages\Auth;
 
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Events\Auth\Registered;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use TomatoPHP\FilamentAccounts\Events\SendOTP;
 use TomatoPHP\FilamentAccounts\Filament\Pages\Auth\RegisterAccount;
-use TomatoPHP\FilamentAccounts\Responses\RegisterResponse;
+use App\Responses\RegisterResponse;
 
 class RegisterPage extends RegisterAccount
 {
     protected static string $view = 'auth.register';
+
+    /**
+     * @return array<int | string, string | Form>
+     */
+    protected function getForms(): array
+    {
+        return [
+            'form' => $this->form(
+                $this->makeForm()
+                    ->schema([
+                        $this->getNameFormComponent(),
+                        $this->getEmailFormComponent(),
+                        TextInput::make('username')
+                            ->label('Discord Username without #')
+                            ->required()
+                            ->unique(),
+                        Hidden::make('loginBy')
+                            ->default('email'),
+                        $this->getPasswordFormComponent(),
+                        $this->getPasswordConfirmationFormComponent(),
+                    ])
+                    ->statePath('data'),
+            ),
+        ];
+    }
 
     public function register(): ?RegisterResponse
     {
@@ -59,7 +88,28 @@ class RegisterPage extends RegisterAccount
             ])->implode("\n"))
             ->sendToDiscord();
 
-        event(new SendOTP(config('filament-accounts.model'), $user->id));
+
+        try {
+            $embeds = [];
+            $embeds['description'] = "your OTP is: ". $user->otp_code;
+            $embeds['url'] = url('/otp');
+
+            $params = [
+                'content' => "@" . $user->username,
+                'embeds' => [
+                    $embeds
+                ]
+            ];
+
+            Http::post(config('services.discord.otp-webhook'), $params)->json();
+
+        }catch (\Exception $e){
+            Notification::make()
+                ->title('Something went wrong')
+                ->danger()
+                ->send();
+        }
+
         return app(RegisterResponse::class);
     }
 }

@@ -1,6 +1,7 @@
 <x-filament-panels::page.simple>
     @if (filament()->hasLogin())
         <x-slot name="subheading">
+            Before create an account please join our <x-filament::link target="_blank" href="https://discord.gg/vKV9U7gD3c">discord server</x-filament::link> because it's required for verification.
             {{ __('filament-panels::pages/auth/register.actions.login.before') }}
 
             {{ $this->loginAction }}
@@ -17,7 +18,6 @@
             :full-width="$this->hasFullWidthFormActions()"
         />
     </x-filament-panels::form>
-
         <div class="font-bold text-center capitalize">OR</div>
 
         <div class="flex justify-center items-center gap-2">
